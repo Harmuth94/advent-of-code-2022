@@ -29,11 +29,18 @@ for i, row in enumerate(maze):
                     print("adding edge", (i, j), (i+direction[0], j+direction[1]))
                     G.add_edge((i, j), (i+direction[0], j+direction[1]))
 
-networkx.shortest_path_length(G, start, end)
+print(networkx.shortest_path_length(G, start, end))
 
 # visual inspection of maze
 # we need to start in the first column which is adjacent to the b
 
+min_dist = 10**12
 for i in range(len(maze)):
-    print(maze[i][0])
-    
+    start = (i, 0)
+    end = end
+    dist = networkx.shortest_path_length(G, start, end)
+    if dist < min_dist:
+        min_dist = dist
+        min_start = start
+
+print(min_dist, min_start)
