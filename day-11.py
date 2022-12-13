@@ -89,7 +89,7 @@ inspected_items = {monkey_number: 0 for monkey_number in range(n_monkeys)}
 
 lcm = 1
 for x in range(n_monkeys):
-    lcm = lcm * parsed_data[x]["test"]
+    lcm *= parsed_data[x]["test"]
 
 for i in range(10000):
     print(i)
