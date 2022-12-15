@@ -22,35 +22,36 @@ for line in data:
 
     # manhattan distance between x,y and bx,by
     distance = abs(x - bx) + abs(y - by)
-    
+
     # find position on line y=10 which are within distance from x,y
-    vertical_distance = abs(y-line_to_check)
+    vertical_distance = abs(y - line_to_check)
     if vertical_distance <= distance:
         # find x positions
-        for i in range(x - (distance - vertical_distance),x + (distance - vertical_distance) + 1):
+        for i in range(
+            x - (distance - vertical_distance), x + (distance - vertical_distance) + 1
+        ):
             occupied_on_line.add(i)
     if by == line_to_check:
         beacons_on_line.add(bx)
 
-    for ty in range(y-distance, y+distance):
-        
+    for ty in range(y - distance, y + distance):
+
         _ = occupied.setdefault(ty, set())
-        
-        new_coords = (x-(distance-abs(y-ty)),x+(distance-abs(y-ty)))
+
+        new_coords = (x - (distance - abs(y - ty)), x + (distance - abs(y - ty)))
         # check if within max min coords
         if new_coords[0] <= max_coord or new_coords[1] >= min_coord:
             occupied[ty].add(new_coords)
-                
-    beasons.add((bx, by))
-    
+
     # find occupied positions
 
 len(occupied_on_line.difference(beacons_on_line))
 
 ll = list(occupied[11])
-ll.sort(key = lambda x: x[0])
+ll.sort(key=lambda x: x[0])
 
-def reduce_overlap(sorted_list, current_segment = None):
+
+def reduce_overlap(sorted_list, current_segment=None):
 
     if len(sorted_list) == 0:
         return current_segment
@@ -66,11 +67,12 @@ def reduce_overlap(sorted_list, current_segment = None):
     else:
         return current_segment, reduce_overlap(sorted_list[1:])
 
+
 for k, v in occupied.items():
     if k < min_coord or k > max_coord:
         continue
     ll = list(v)
-    ll.sort(key = lambda x: x[0])
+    ll.sort(key=lambda x: x[0])
     overlap = reduce_overlap(ll)
     if isinstance(overlap[0], tuple):
         print(k, ll)
@@ -80,4 +82,4 @@ for k, v in occupied.items():
         x = overlap[0][1] + 1
         break
 
-print(x*max_coord + y)
+print(x * max_coord + y)
