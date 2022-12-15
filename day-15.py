@@ -45,11 +45,7 @@ for line in data:
 
     # find occupied positions
 
-len(occupied_on_line.difference(beacons_on_line))
-
-ll = list(occupied[11])
-ll.sort(key=lambda x: x[0])
-
+print(len(occupied_on_line.difference(beacons_on_line)))
 
 def reduce_overlap(sorted_list, current_segment=None):
 
