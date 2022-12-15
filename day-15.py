@@ -11,7 +11,6 @@ beacons_on_line = set()
 max_coord = 4000_000
 min_coord = 0
 occupied = dict()
-beasons= set()
 
 for line in data:
     print(line)
